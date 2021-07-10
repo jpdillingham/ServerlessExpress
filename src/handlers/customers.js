@@ -4,19 +4,18 @@ const customers = require('../lib/customers');
 
 const app = express();
 
-app.get("/", (req, res) => {
+app.get("/customers", (req, res) => {
   return res
-    .status(200)
-    .json(customers.get());
+    .status(200).json(customers.get());
 });
 
-app.get("/:id", (req, res) => {
+app.get("/customers/:id", (req, res) => {
   const { id } = req.params;
 
   const customer = customers.get().find(c => c.id === id);
 
   if (!customer) {
-    return res.status(404);
+    return res.status(404).send();
   }
 
   return res
@@ -24,39 +23,39 @@ app.get("/:id", (req, res) => {
     .json(customer);
 });
 
-app.post("/", (req, res) => {
+app.post("/customers", (req, res) => {
   const { id, name, address } = req.body;
 
   const isValidCustomer = id && name && address;
 
   if (!isValidCustomer) {
-    return res.status(400);
+    return res.status(400).send();
   };
 
   customers.add({ 
     customer: { id, name, address }
   });
 
-  return res.status(201);
+  return res.status(201).send();
 });
 
-app.delete("/:id", (req, res) => {
+app.delete("/customers/:id", (req, res) => {
   const { id } = req.params;
 
   const customer = customers.get().find(c => c.id === id);
 
   if (!customer) {
-    return res.status(404);
+    return res.status(404).send();
   }
 
   customers.remove(customer.id);
 
-  return res.status(204);
+  return res.status(204).send();
 });
 
 app.use((req, res, next) => {
   return res.status(404).json({
-    error: "Not Found",
+    error: `Not Found: ${res.path}`,
   });
 });
 

@@ -1,5 +1,5 @@
 let customers = [{
-  id: abc123,
+  id: 'abc123',
   name: 'jane doe',
   address: '123 fake street, anytown USA'
 }];

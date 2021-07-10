@@ -12,11 +12,11 @@ provider:
 
 functions:
   api:
-    handler: src/handlers/customer.handler
+    handler: src/handlers/customers.handler
     events:
       - http:
-          path: /
+          path: /customers
           method: ANY
       - http:
-          path: /{proxy+}
+          path: /customers/{proxy+}
           method: ANY
