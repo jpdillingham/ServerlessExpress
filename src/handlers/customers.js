@@ -1,8 +1,17 @@
 const serverless = require("serverless-http");
 const express = require("express");
+const bodyParser = require('body-parser');
+
 const customers = require('../lib/customers');
 
 const app = express();
+app.use(bodyParser.json());
+
+app.use((req, res, next) => {
+  const { apiGateway: { event }} = req;
+  console.log(JSON.stringify(event));
+  next();
+});
 
 app.get("/customers", (req, res) => {
   return res
