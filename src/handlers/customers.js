@@ -48,7 +48,7 @@ app.delete("/customers/:id", (req, res) => {
     return res.status(404).send();
   }
 
-  customers.remove(customer.id);
+  customers.remove({ id: customer.id });
 
   return res.status(204).send();
 });
