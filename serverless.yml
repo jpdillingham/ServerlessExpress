@@ -1,4 +1,4 @@
-service: express
+service: serverless-express
 
 frameworkVersion: '2'
 
