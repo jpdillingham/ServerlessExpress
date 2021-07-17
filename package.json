@@ -7,8 +7,9 @@
     "watch": "yarn nodemon --watch serverless.yml"
   },
   "dependencies": {
-    "body-parser": "^1.19.0",
+    "aws-embedded-metrics": "^2.0.4",
     "express": "^4.17.1",
+    "lodash": "^4.17.21",
     "serverless-http": "^2.7.0"
   },
   "devDependencies": {
