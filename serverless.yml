@@ -20,7 +20,21 @@ functions:
     events:
       - http:
           path: /customers
-          method: ANY
+          method: GET
       - http:
-          path: /customers/{proxy+}
-          method: ANY
+          path: /customers/{id}
+          method: GET
+          request:
+            parameters:
+              paths:
+                id: true
+      - http:
+          path: /customers
+          method: POST
+      - http:
+          path: /customers/{id}
+          method: DELETE
+          request:
+            parameters:
+              paths:
+                id: true
