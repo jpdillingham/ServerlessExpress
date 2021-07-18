@@ -3,8 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start": "sls offline start --disableCookieValidation --useChildProcesses",
-    "watch": "yarn nodemon --watch serverless.yml"
+    "start": "node ./src/.",
+    "watch": "yarn nodemon ./src/.",
+    "start:sls": "sls offline start --disableCookieValidation --useChildProcesses",
+    "watch:sls": "yarn nodemon --watch serverless.yml",
+    "test": "yarn jest --silent",
+    "test:Watch": "yarn jest --silent --watch"
   },
   "dependencies": {
     "aws-embedded-metrics": "^2.0.4",
