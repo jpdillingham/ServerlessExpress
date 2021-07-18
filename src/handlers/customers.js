@@ -8,51 +8,51 @@ const customers = require('../lib/customers');
 const app = express();
 app.use(express.json());
 
-app.use(metricScope(metrics => async (req, res, next) => {
-  const start = Date.now();
+// app.use(metricScope(metrics => async (req, res, next) => {
+//   const start = Date.now();
 
-  metrics.setNamespace("ServerlessExpress");
-  metrics.setProperty("Path", req.path);
-  metrics.setProperty("Method", req.method);
-  metrics.setProperty("RequestId", req.headers["x-request-id"])
-  req['metrics'] = metrics;
+//   metrics.setNamespace("ServerlessExpress");
+//   metrics.setProperty("Path", req.path);
+//   metrics.setProperty("Method", req.method);
+//   metrics.setProperty("RequestId", req.headers["x-request-id"])
+//   req['metrics'] = metrics;
   
-  const { apiGateway: { event }} = req;
-  const { headers: requestHeaders, httpMethod, path, pathParameters, queryStringParameters, requestContext, resource, stageVariables } = event;
+//   const { apiGateway: { event }} = req;
+//   const { headers: requestHeaders, httpMethod, path, pathParameters, queryStringParameters, requestContext, resource, stageVariables } = event;
   
-  next();
+//   next();
 
-  const { statusCode, statusMessage, _header: responseHeaders } = res;
-  const duration = Date.now() - start;
+//   const { statusCode, statusMessage, _header: responseHeaders } = res;
+//   const duration = Date.now() - start;
   
-  console.log(JSON.stringify({
-    request: {
-      httpMethod, 
-      path,
-      pathParameters, 
-      queryStringParameters, 
-      requestHeaders, 
-      context: {
-        requestContext, 
-        resource, 
-        stageVariables
-      }
-    },
-    response: {
-      statusCode, 
-      statusMessage, 
-      responseHeaders
-    },
-    duration
-  }));
+//   console.log(JSON.stringify({
+//     request: {
+//       httpMethod, 
+//       path,
+//       pathParameters, 
+//       queryStringParameters, 
+//       requestHeaders, 
+//       context: {
+//         requestContext, 
+//         resource, 
+//         stageVariables
+//       }
+//     },
+//     response: {
+//       statusCode, 
+//       statusMessage, 
+//       responseHeaders
+//     },
+//     duration
+//   }));
 
-  req.metrics.putMetric("HandlerTime", duration);
-}));
+//   req.metrics.putMetric("HandlerTime", duration);
+// }));
 
 app.get("/customers", (req, res) => {
   const records = customers.get();
 
-  req.metrics.putMetric("CustomerCount", (records || []).length);
+  //req.metrics.putMetric("CustomerCount", (records || []).length);
 
   return res
     .status(200).json(records);
@@ -108,4 +108,4 @@ app.use((req, res, next) => {
   });
 });
 
-module.exports.handler = serverless(app);
+module.exports = app
