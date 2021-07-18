@@ -15,8 +15,8 @@ provider:
     restApi: true
 
 functions:
-  api:
-    handler: src/handlers/customers.handler
+  customer:
+    handler: src/handlers/customer/index.handler
     events:
       - http:
           path: /customers
@@ -38,3 +38,9 @@ functions:
             parameters:
               paths:
                 id: true
+  widget:
+    handler: src/handlers/widget/index.handler
+    events:
+      - http:
+          path: /widgets
+          method: GET
