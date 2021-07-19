@@ -5,6 +5,8 @@ frameworkVersion: '2'
 plugins:
   - serverless-offline #serverless-offline needs to be last in the list
 
+useDotenv: true
+
 provider:
   name: aws
   runtime: nodejs14.x
@@ -13,6 +15,9 @@ provider:
     metrics: true
   logs:
     restApi: true
+  environment:
+    FOO: ${env:FOO}
+    BAZ: ${env:BAZ}
 
 functions:
   customer:
