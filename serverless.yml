@@ -49,3 +49,10 @@ functions:
       - http:
           path: /widgets
           method: GET
+
+  graphql:
+    handler: src/handlers/graphql/index.handler
+    events:
+      - http:
+          path: /graphql
+          method: ANY

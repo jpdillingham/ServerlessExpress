@@ -11,8 +11,10 @@
     "test:Watch": "yarn jest --silent --watch"
   },
   "dependencies": {
+    "apollo-server-express": "^3.0.1",
     "aws-embedded-metrics": "^2.0.4",
     "express": "^4.17.1",
+    "graphql": "^15.5.1",
     "lodash": "^4.17.21",
     "serverless-http": "^2.7.0"
   },

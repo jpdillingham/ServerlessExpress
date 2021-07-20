@@ -6,6 +6,7 @@ const app = express();
 // behind API gateway, leave the base route up to the app.
 app.use(require('./handlers/customer').app);
 app.use(require('./handlers/widget').app);
+app.use(require('./handlers/graphql').app);
 
 app.use(require('./middleware/404'));
 
